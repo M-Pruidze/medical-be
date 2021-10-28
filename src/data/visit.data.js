@@ -25,7 +25,7 @@ module.exports.updatedVisit = async (req, res) => {
     doctorId: req.body.doctorId,
     date: req.body.date,
     complaints: req.body.complaints,
-  });
+  }, {new: true});
   return updatedVisit;
 };
 
