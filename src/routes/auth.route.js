@@ -11,7 +11,7 @@ router.post('/login', (req, res) => {
   passport.authenticate('local', { session: false }, (err, user, info) => {
     if (err || !user) return res.status(404).json({
       message: 'неверное имя пользователя или пароль',
-      error: "Bad Request",
+      error: "Not found",
       statusCode: "404",
     });
     if (err) res.send(err);
@@ -34,7 +34,12 @@ router.post('/', async (req, res, next) => {
       };
     }
     if (!/\w{6,}/.test(req.body.username)) {
-      throw new Error('пожалуйста, введите правильнное имя пользователя');
+      // throw new Error('пожалуйста, введите правильнное имя пользователя');
+      throw {
+        message: `пожалуйста, введите правильнное имя пользователя`,
+        error: 'Bad Request',
+        status: '400',
+      };
     }
     const userUsername = await User.find({ username: req.body.username });
     if (userUsername.length > 0) {

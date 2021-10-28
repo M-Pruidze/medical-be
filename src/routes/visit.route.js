@@ -11,10 +11,10 @@ const {
   } = require('../controllers/visit.controller');
 
 // visit routes
-router.get('/visit', allVisits);
-router.post('/visit', newVisit);
-router.put('/visit/:id', updatedVisit);
-router.delete('/visit/:id', deletedVisit);
+router.get('/', allVisits);
+router.post('/', newVisit);
+router.put('/:id', updatedVisit);
+router.delete('/:id', deletedVisit);
 // router.delete('/visit/', deleteAllVisits);
 
 module.exports = router;

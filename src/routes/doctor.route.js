@@ -6,7 +6,7 @@ const {
     newDoctor,
   } = require('../controllers/doctor.controller');
 
-router.get('/doctor', allDoctors);
-router.post('/doctor', newDoctor);
+router.get('/', allDoctors);
+router.post('/', newDoctor);
 
 module.exports = router;
