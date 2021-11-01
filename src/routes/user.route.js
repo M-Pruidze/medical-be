@@ -5,6 +5,4 @@ const visit = require('./visit.route');
 
 router.get('/profile', user_controller.profile);
 
-router.use('/', visit);
-
 module.exports = router;

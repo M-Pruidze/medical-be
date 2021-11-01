@@ -3,7 +3,6 @@ const {
     newVisit,
     updatedVisit,
     deletedVisit,
-    // deleteAllVisits,
     } = require('../data/visit.data');
 
 // get all visits
@@ -14,7 +13,6 @@ module.exports.allVisits = async (req,res) => {
             result,
         );
     } catch (error) {
-        // console.log(`error`, error)
         res.status('500')
             .send({
                 message: "Internal server error",

@@ -34,7 +34,6 @@ router.post('/', async (req, res, next) => {
       };
     }
     if (!/\w{6,}/.test(req.body.username)) {
-      // throw new Error('пожалуйста, введите правильнное имя пользователя');
       throw {
         message: `пожалуйста, введите правильнное имя пользователя`,
         error: 'Bad Request',

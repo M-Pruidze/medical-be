@@ -34,7 +34,3 @@ module.exports.deletedVisit = async (req, res) => {
   return deletedVisit;
 };
 
-// module.exports.deleteAllVisits = async () => {
-//   const deleteAllVisits = await Visit.deleteMany({});
-//   return deleteAllVisits;
-// };
