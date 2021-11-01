@@ -67,7 +67,7 @@ router.post('/', async (req, res, next) => {
     user.save((err, user) => {
       if (err) return next(err);
       res.send({
-        result: user,
+        result: {username: user.username},
       });
     });
   } catch (error) {
