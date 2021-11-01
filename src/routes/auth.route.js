@@ -16,7 +16,7 @@ router.post('/login', (req, res) => {
     });
     if (err) res.send(err);
     const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_TTL });
-    return res.json({ user, token, note: "pass this token in header as a bearerToken :)))" });
+    return res.json({ user: {_id: user._id, username: user.username}, token, note: "pass this token in header as a bearerToken :)))" });
   })(req, res);
 });
 
