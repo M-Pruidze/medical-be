@@ -25,7 +25,8 @@ module.exports.allVisits = async (req,res) => {
 // create a new Visit
 module.exports.newVisit = async (req,res) => {
     try {
-        if (typeof req.body.username == 'string' && typeof req.body.doctorId == 'string' && typeof req.body.complaints == 'string' && typeof req.body.date == 'string' ) {
+        // if (typeof req.body.username == 'string' && typeof req.body.doctorId == 'string' && typeof req.body.complaints == 'string' && typeof req.body.date == 'string' && new Date(req.body.date) >= new Date() ) {
+            if (typeof req.body.username == 'string' && typeof req.body.doctorId == 'string' && typeof req.body.complaints == 'string' && typeof req.body.date == 'string' ) {
             const result = await newVisit(req, res);
             res.send(result);
         } else {
