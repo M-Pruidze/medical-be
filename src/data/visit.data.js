@@ -12,9 +12,8 @@ module.exports.newVisit = async (req, res) => {
     doctorId: req.body.doctorId,
     date: req.body.date,
     complaints: req.body.complaints,
-    userId: req.body.userId,
+    userId: req.user._id,
   });
-  console.log(`req.body-new visit`, req.body)
   const newVisit = await visit.save();
   return newVisit;
 };
@@ -25,7 +24,7 @@ module.exports.updatedVisit = async (req, res) => {
     doctorId: req.body.doctorId,
     date: req.body.date,
     complaints: req.body.complaints,
-  });
+  }, {new: true});
   return updatedVisit;
 };
 
@@ -34,7 +33,3 @@ module.exports.deletedVisit = async (req, res) => {
   return deletedVisit;
 };
 
-// module.exports.deleteAllVisits = async () => {
-//   const deleteAllVisits = await Visit.deleteMany({});
-//   return deleteAllVisits;
-// };

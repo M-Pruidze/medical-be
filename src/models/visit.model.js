@@ -12,7 +12,18 @@ const visitSchema = new Schema({
       },
     date: {
         type: Date,
-        required: true
+        required: true,
+        validate: {
+          validator: function (v) {
+            return (
+              v && // check that there is a date object
+              v.getTime() > Date.now() + 24 * 60 * 60 * 1000 &&
+              v.getTime() < Date.now() + 365 * 24 * 60 * 60 * 1000
+            );
+          },
+          message:
+            "A visit must be at least 1 day from now and not more than 1 year.",
+        }
       },
     complaints: {
         type: String,

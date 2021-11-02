@@ -16,7 +16,7 @@ router.post('/login', (req, res) => {
     });
     if (err) res.send(err);
     const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_TTL });
-    return res.json({ user, token, note: "pass this token in header as a bearerToken :)))" });
+    return res.json({ user: {_id: user._id, username: user.username}, token, note: "pass this token in header as a bearerToken :)))" });
   })(req, res);
 });
 
@@ -34,7 +34,6 @@ router.post('/', async (req, res, next) => {
       };
     }
     if (!/\w{6,}/.test(req.body.username)) {
-      // throw new Error('пожалуйста, введите правильнное имя пользователя');
       throw {
         message: `пожалуйста, введите правильнное имя пользователя`,
         error: 'Bad Request',
@@ -68,7 +67,7 @@ router.post('/', async (req, res, next) => {
     user.save((err, user) => {
       if (err) return next(err);
       res.send({
-        result: user,
+        result: {username: user.username},
       });
     });
   } catch (error) {
