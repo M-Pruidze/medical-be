@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/auth', auth);
 app.use(passport.initialize());
 app.use('/user/:id', passport.authenticate('jwt', {session: false}), user);
-app.use('/', passport.authenticate('jwt', {session: false}), visit);
-app.use('/', passport.authenticate('jwt', {session: false}), doctor);
+app.use('/visit', passport.authenticate('jwt', {session: false}), visit);
+app.use('/doctor', passport.authenticate('jwt', {session: false}), doctor);
 
 module.exports = app;

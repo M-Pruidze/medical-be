@@ -15,11 +15,11 @@ module.exports.allVisits = async (req,res) => {
         );
     } catch (error) {
         // console.log(`error`, error)
-        res.status(500)
+        res.status('500')
             .send({
                 message: "Internal server error",
                 error: "Internal server",
-                status: 500,
+                status: '500',
             });
     }
 };
@@ -34,19 +34,19 @@ module.exports.newVisit = async (req,res) => {
             throw {
                 message: "Invalid fields type",
                 error: "Bad Request",
-                status: 400,
+                status: '400',
             }
         }
     } catch (error) {
-        if (error.status == 400) {
+        if (error.status == '400') {
           res.status(error.status)
              .send(error);
         } else {
-          res.status(500)
+          res.status('500')
              .send({
                 message: error.message,
                 error: "Internal server",
-                status: 500,
+                status: '500',
              });
         }
 
@@ -63,19 +63,19 @@ module.exports.updatedVisit = async (req,res) => {
             throw {
                 message:"Invalid fields type",
                 error: "Bad Request",
-                status: 400,
+                status: '400',
             }
         }
     } catch (error) {
-        if (error.status == 400) {
+        if (error.status == '400') {
             res.status(error.status)
                 .send(error);
         } else {
-            res.status(500)
+            res.status('500')
                 .send({
                     message: "Internal server error",
                     error: "Internal server",
-                    status: 500,
+                    status: '500',
                 });
         }
     }
@@ -91,19 +91,19 @@ module.exports.deletedVisit = async (req,res) => {
             throw {
                 message: "Id not provided",
                 error: "Bad Request",
-                status: 400,
+                status: '400',
             }
         }
     } catch (error) {
-        if (error.status == 400) {
+        if (error.status == '400') {
             res.status(error.status)
                .send(error);
         } else {
-            res.status(500)
+            res.status('500')
                 .send({
                     message: "Internal server error",
                     error: "Internal server",
-                    status: 500,
+                    status: '500',
                 });
         }
     }

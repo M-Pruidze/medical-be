@@ -11,11 +11,11 @@ module.exports.allDoctors = async (req,res) => {
             result,
         );
     } catch (error) {
-        res.status(500)
+        res.status('500')
             .send({
                 message: "Internal server error",
                 error: "Internal server",
-                status: 500,
+                status: '500',
             });
     }
 };
@@ -24,30 +24,25 @@ module.exports.allDoctors = async (req,res) => {
 module.exports.newDoctor = async (req,res) => {
     try {
         if (typeof req.body.doctorName == 'string' && typeof req.body.specialty == 'string' ) {
-            console.log('here');
-            console.log(`req.body`, req.body)
             const result = await newDoctor(req, res);
             res.send(result);
         } else {
             throw {
                 message: "Invalid fields type",
                 error: "Bad Request",
-                status: 400,
+                status: '400',
             }
         }
     } catch (error) {
-        if (error.status == 400) {
-            console.log(`req.body.doctorName`, req.body.doctorName);
-            console.log(`req.body.specialty`, req.body.specialty)
-            console.log(`req.body`, req.body)
+        if (error.status == '400') {
           res.status(error.status)
              .send(error);
         } else {
-          res.status(500)
+          res.status('500')
              .send({
                 message: error.message,
                 error: "Internal server",
-                status: 500,
+                status: '500',
              });
         }
 
