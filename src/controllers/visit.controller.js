@@ -8,9 +8,10 @@ const {
 // get all visits
 module.exports.allVisits = async (req,res) => {
     try {
-        const result = await allVisits(req.user);
+        const queryObj = {...req.query};
+        const result = await allVisits(req.user, queryObj);
         res.send(
-            result,
+            result
         );
     } catch (error) {
         res.status('500')
