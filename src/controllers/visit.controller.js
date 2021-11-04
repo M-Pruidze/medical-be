@@ -8,25 +8,34 @@ const {
 // get all visits
 module.exports.allVisits = async (req,res) => {
     try {
-        const queryObj = {...req.query};
-        const result = await allVisits(req.user, queryObj);
-        res.send(
-            result
-        );
+        if (req.query.hasOwnProperty('fromDate') && req.query.hasOwnProperty('toDate')) {
+            const result = await allVisits(req.user, req.query);
+            res.send(result);
+        } else {
+            throw {
+                message: "Error in query syntax",
+                error: "Bad Request",
+                status: '400',
+            }
+        }
     } catch (error) {
-        res.status('500')
-            .send({
-                message: "Internal server error",
-                error: "Internal server",
-                status: '500',
-            });
-    }
+        if (error.status == '400') {
+            res.status(error.status)
+                .send(error);
+        } else {
+            res.status('500')
+                .send({
+                    message: "Internal server error",
+                    error: "Internal server",
+                    status: '500',
+                });
+        }
 };
+}
 
 // create a new Visit
 module.exports.newVisit = async (req,res) => {
     try {
-        // if (typeof req.body.username == 'string' && typeof req.body.doctorId == 'string' && typeof req.body.complaints == 'string' && typeof req.body.date == 'string' && new Date(req.body.date) >= new Date() ) {
             if (typeof req.body.username == 'string' && typeof req.body.doctorId == 'string' && typeof req.body.complaints == 'string' && typeof req.body.date == 'string' ) {
             const result = await newVisit(req, res);
             res.send(result);
